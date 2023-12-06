@@ -8,5 +8,11 @@ public class AllState : StateBase
 
     public override string GetScore()
     {
-        return $"{_scoreMapping[_tennisBox.GetFirstPlayerScore()]} all";    }
+        return $"{_scoreMapping[_tennisBox.GetFirstPlayerScore()]} all";
+    }
+
+    public override void Next()
+    {
+        GoLookUp();
+    }
 }

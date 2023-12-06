@@ -19,17 +19,27 @@ public class TennisBox
     public void FirstPlayerGoal()
     {
         _firstPlayerScore++;
-        _currentState = new LookUpState(this);
+        _currentState.Next();
     }
 
     public void SecondPlayerGoal()
     {
         _secondPlayerSocre++;
-        _currentState = new AllState(this);
+        _currentState.Next();
     }
 
     public int GetFirstPlayerScore()
     {
         return _firstPlayerScore;
+    }
+
+    public int GetSecodPlayerScore()
+    {
+        return _secondPlayerSocre;
+    }
+
+    public void SetState(StateBase allState)
+    {
+        _currentState = allState;
     }
 }

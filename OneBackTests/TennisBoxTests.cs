@@ -39,6 +39,21 @@ public class TennisBoxTests
         GiveSecondPlayerScore(1);
         ScoreShouldBe("fifteen all");
     }
+    [Test(Description = "all to lookup")]
+    public void fifteen_thirty()
+    {
+        GiveFirstPlayerScore(1);
+        GiveSecondPlayerScore(1);
+        WhenScondPlayerGoal();
+        ScoreShouldBe("fifteen thirty");
+    }
+
+  
+
+    private void WhenScondPlayerGoal()
+    {
+        _tennisBox.SecondPlayerGoal();
+    }
 
     private void GiveSecondPlayerScore(int times)
     {

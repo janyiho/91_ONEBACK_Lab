@@ -11,11 +11,18 @@ public class LookUpState : StateBase
 
     public override string GetScore()
     {
-        if (_tennisBox.GetFirstPlayerScore()==2)
-        {
-            return $"{_scoreMapping[_tennisBox.GetFirstPlayerScore()]} love";
-        }
+        return $"{_scoreMapping[_tennisBox.GetFirstPlayerScore()]} {_scoreMapping[_tennisBox.GetSecodPlayerScore()]}";
+    }
 
-        return $"{_scoreMapping[_tennisBox.GetFirstPlayerScore()]} love";
+    public override void Next()
+    {
+        if (_tennisBox.GetFirstPlayerScore() == _tennisBox.GetSecodPlayerScore())
+        {
+            GoAllState();
+        }
+        else
+        {
+            GoLookUp();
+        }
     }
 }

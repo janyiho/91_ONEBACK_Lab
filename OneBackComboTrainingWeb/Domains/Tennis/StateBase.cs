@@ -18,4 +18,15 @@ public abstract class StateBase
     }
 
     public abstract string GetScore();
+    public abstract void Next();
+
+    protected void GoLookUp()
+    {
+        _tennisBox.SetState(new LookUpState(_tennisBox));
+    }
+
+    protected void GoAllState()
+    {
+        _tennisBox.SetState(new AllState(_tennisBox));
+    }
 }
