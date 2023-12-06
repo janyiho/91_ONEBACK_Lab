@@ -9,7 +9,7 @@ public class TennisBoxTests
     [SetUp]
     public void SetUp()
     {
-        _tennisBox = new TennisBox();
+        _tennisBox = new TennisBox($"Eva", $"Eric");
     }
 
     [Test]
@@ -39,6 +39,7 @@ public class TennisBoxTests
         GiveSecondPlayerScore(1);
         ScoreShouldBe("fifteen all");
     }
+
     [Test(Description = "all to lookup")]
     public void fifteen_thirty()
     {
@@ -48,7 +49,61 @@ public class TennisBoxTests
         ScoreShouldBe("fifteen thirty");
     }
 
-  
+    [Test(Description = "lookup to deuce")]
+    public void deuce()
+    {
+        GiveFirstPlayerScore(3);
+        GiveSecondPlayerScore(2);
+        WhenScondPlayerGoal();
+        ScoreShouldBe("deuce");
+    }
+
+    [Test(Description = "deuce to adv")]
+    public void first_player_adv()
+    {
+        GiveDeuce();
+        WhenFirstPlayerGoal();
+        ScoreShouldBe("Eva adv");
+    }
+
+    [Test(Description = "adv to deuce")]
+    public void adv_to_deuce()
+    {
+        GiveFirstPlayerScore(3);
+        GiveSecondPlayerScore(4);
+        WhenFirstPlayerGoal();
+        ScoreShouldBe("deuce");
+    }
+
+    [Test(Description = "adv to win")]
+    public void avd_to_win()
+    {
+        GiveFirstPlayerScore(3);
+        GiveSecondPlayerScore(4);
+        WhenScondPlayerGoal();
+        ScoreShouldBe("Eric win");
+    }
+
+    [Test(Description = "lookup to win")]
+    public void lookup_to_win()
+    {
+        GiveFirstPlayerScore(1);
+        GiveSecondPlayerScore(3);
+        WhenScondPlayerGoal();
+        ScoreShouldBe("Eric win");
+    }
+
+    private void WhenFirstPlayerGoal()
+    {
+        _tennisBox.FirstPlayerGoal();
+    }
+
+    private void GiveDeuce()
+    {
+        GiveFirstPlayerScore(3);
+        GiveSecondPlayerScore(3);
+    }
+
 
     private void WhenScondPlayerGoal()
     {

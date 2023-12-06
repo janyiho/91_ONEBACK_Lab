@@ -18,11 +18,25 @@ public class LookUpState : StateBase
     {
         if (_tennisBox.GetFirstPlayerScore() == _tennisBox.GetSecodPlayerScore())
         {
-            GoAllState();
+            if (_tennisBox.GetFirstPlayerScore() >= 3)
+            {
+                GoDeuce();
+            }
+            else
+            {
+                GoAllState();
+            }
         }
         else
         {
-            GoLookUp();
+            if (_tennisBox.GetFirstPlayerScore() >= 4 || _tennisBox.GetSecodPlayerScore() >= 4)
+            {
+                GoWin();
+            }
+            else
+            {
+                GoLookUp();
+            }
         }
     }
 }
