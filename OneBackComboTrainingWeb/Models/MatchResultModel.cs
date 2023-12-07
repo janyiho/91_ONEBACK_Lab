@@ -22,7 +22,7 @@ public class MatchResultModel
 
     public bool CheckLastChar(char lastChar)
     {
-        return this.OriginalData.Length > 0 && this.OriginalData.ToCharArray().Last() == lastChar;
+        return this.OriginalData.Length > 0 && this.OriginalData.EndsWith(lastChar);
     }
 
     public bool CheckSecondLastChar(char lastChar)
