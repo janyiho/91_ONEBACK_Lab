@@ -11,9 +11,9 @@ public class MatchResultModel
         OriginalData = matchResult;
     }
     public int MatchId { get; set; }
-    public int HomeScore => OriginalData.Count(c => c == 'H');
-    public int AwayScore => OriginalData.Count(c => c == 'A');
-    public bool IsSecondPeriod =>OriginalData.Any(c => c == ';');
+    private int HomeScore => OriginalData.Count(c => c == 'H');
+    private int AwayScore => OriginalData.Count(c => c == 'A');
+    private bool IsSecondPeriod =>OriginalData.Any(c => c == ';');
     public string OriginalData;
 
     public string GetDisplayScore()
@@ -21,27 +21,27 @@ public class MatchResultModel
         return $"{HomeScore}:{AwayScore} ({(IsSecondPeriod ? "Second Half" : "First Half")})";
     }
 
-    public bool CheckLastChar(char lastChar)
+    private bool CheckLastChar(char lastChar)
     {
         return this.OriginalData.Length > 0 && this.OriginalData.EndsWith(lastChar);
     }
 
-    public bool CheckSecondLastChar(char lastChar)
+    private bool CheckSecondLastChar(char lastChar)
     {
         return this.OriginalData.Length >= 2 && this.OriginalData.ToCharArray()[this.OriginalData.Length-2] == lastChar;
     }
 
-    public void RemoveSecondLastChar()
+    private void RemoveSecondLastChar()
     {
         this.OriginalData = this.OriginalData.Remove(this.OriginalData.Length - 2, 1);
     }
 
-    public void RemoveLastChar()
+    private void RemoveLastChar()
     {
         this.OriginalData = this.OriginalData.Remove(this.OriginalData.Length - 1);
     }
 
-    public void CancelScore(char @char)
+    private void CancelScore(char @char)
     {
         if (CheckLastChar(@char))
         {
@@ -64,17 +64,17 @@ public class MatchResultModel
         }
     }
 
-    public void NextPeriod()
+    private void NextPeriod()
     {
         OriginalData += ";";
     }
 
-    public void AwayGoal()
+    private void AwayGoal()
     {
         OriginalData += "A";
     }
 
-    public void HomeGoal()
+    private void HomeGoal()
     {
         OriginalData += "H";
     }
