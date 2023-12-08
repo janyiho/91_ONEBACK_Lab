@@ -5,8 +5,9 @@ namespace OneBackComboTrainingWeb.Models;
 
 public class MatchResultModel
 {
-    public MatchResultModel(string matchResult)
+    public MatchResultModel(string matchResult, int matchid)
     {
+        MatchId = matchid; 
         OriginalData = matchResult;
     }
     public int MatchId { get; set; }
